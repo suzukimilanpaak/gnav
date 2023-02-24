@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'git'
-require 'tty/prompt/vim'
+require 'tty-prompt'
 require 'logger'
 require_relative './tag_extractor'
 
@@ -18,7 +18,7 @@ class GitPrompt
 
   def select_tag
     message = 'j/↓: down, k/↑: up, Enter: choose tag, Type to filter tags'
-    prompt.select(message, filter: true, per_page: 10) do |menu|
+    prompt.select(message, filter: false, per_page: 10) do |menu|
       extractor.recent_tag_names.each do |tag_name|
         menu.choice tag_name, -> { checkout(tag_name) }
       end
