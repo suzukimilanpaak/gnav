@@ -2,5 +2,10 @@
 
 source 'https://rubygems.org'
 
-gem 'tty-prompt-vim'
-gem 'git'
+gemspec
+
+group :development, :test do
+  gem 'pry', require: true
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+end
