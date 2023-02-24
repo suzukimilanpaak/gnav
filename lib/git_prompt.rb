@@ -5,7 +5,7 @@ require 'tty/prompt/vim'
 require 'logger'
 require_relative './tag_extractor'
 
-class Selector
+class GitPrompt
   attr_reader :git, :extractor, :prompt, :logger
 
   def initialize(git: nil)
