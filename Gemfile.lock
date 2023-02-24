@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gits (0.0.0)
+    git_selector (0.0.0)
       git
       tty-prompt-vim
 
@@ -64,7 +64,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  gits!
+  git_selector!
   pry
   pry-byebug
   pry-stack_explorer

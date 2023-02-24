@@ -4,10 +4,10 @@ $LOAD_PATH.push File.expand_path('../lib', __FILE__)
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'gits'
+  s.name        = 'git_selector'
   s.version     = '0.0.0'
   s.authors     = 'Tatsuya Suzuki'
-  s.homepage    = 'https://github.com/suzukimilanpaak/gits'
+  s.homepage    = 'https://github.com/suzukimilanpaak/git_selector'
   s.summary     = 'Interactive git tag and branch selector'
   s.description = 'A CLI to let you interactive select tag and branch'
 
