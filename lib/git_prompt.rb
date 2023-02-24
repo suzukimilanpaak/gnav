@@ -17,11 +17,16 @@ class GitPrompt
   end
 
   def select_tag
-    message = 'j/↓: down, k/↑: up, Enter: choose tag, Type to filter tags'
-    prompt.select(message, filter: false, per_page: 10) do |menu|
-      extractor.recent_tag_names.each do |tag_name|
-        menu.choice tag_name, -> { checkout(tag_name) }
+    message = 'j/↓: down, k/↑: up, Enter: choose tag'
+    recent_tag_names = extractor.recent_tag_names
+    if recent_tag_names.size > 0
+      prompt.select(message, filter: false, per_page: 10) do |menu|
+        recent_tag_names.each do |tag_name|
+          menu.choice tag_name, -> { checkout(tag_name) }
+        end
       end
+    else
+      prompt.ok 'No tags were found'
     end
   rescue TTY::Reader::InputInterrupt => e
     exit
