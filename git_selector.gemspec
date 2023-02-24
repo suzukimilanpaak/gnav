@@ -1,20 +1,33 @@
-# frozen_string_litral: true
+require_relative 'lib/git_selector/version'
 
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+Gem::Specification.new do |spec|
+  spec.name          = "git_selector"
+  spec.version       = GitSelector::VERSION
+  spec.authors       = ["Tatsuya Suzuki"]
+  spec.email         = ["ttsysuzuki@googlemail.com"]
 
-# Describe your gem and declare its dependencies:
-Gem::Specification.new do |s|
-  s.name        = 'git_selector'
-  s.version     = '0.0.0'
-  s.authors     = 'Tatsuya Suzuki'
-  s.homepage    = 'https://github.com/suzukimilanpaak/git_selector'
-  s.summary     = 'Interactive git tag and branch selector'
-  s.description = 'A CLI to let you interactive select tag and branch'
+  spec.summary     = 'Interactive git tag and branch selector'
+  spec.description = 'A CLI to let you interactive select tag and branch'
+  spec.homepage    = 'https://github.com/suzukimilanpaak/git_selector'
 
-  s.files = Dir['{app,config,db,lib,vendor}/**/*'] + ['README.md']
+  spec.license       = "MIT"
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
-  s.add_dependency 'git'
-  s.add_dependency 'tty-prompt-vim'
 
-  s.add_development_dependency 'rspec'
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = 'https://github.com/suzukimilanpaak/git_selector'
+  spec.metadata["changelog_uri"] = 'https://github.com/suzukimilanpaak/blob/master/CHANGELOG.md'
+
+  # Specify which files should be added to the gem when it is released.
+  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
+  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  end
+  spec.bindir        = "bin"
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
+
+  spec.add_dependency 'git'
+  spec.add_dependency 'tty-prompt-vim'
+  spec.add_development_dependency 'rspec'
 end
