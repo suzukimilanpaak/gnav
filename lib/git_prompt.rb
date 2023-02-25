@@ -4,6 +4,7 @@ require 'git'
 require 'tty-prompt'
 require 'logger'
 require_relative './treeish_extractor'
+require_relative './monkey_patches/tty/prompt.rb'
 
 class GitPrompt
   SELECT_OPTIONS_PER_PAGE = 10
@@ -13,10 +14,10 @@ class GitPrompt
   def initialize(git: nil)
     @git = git || Git.open(Dir.pwd)
     @extractor = TreeishExtractor.new(git: git)
-		@prompt = TTY::Prompt.new(quiet: true)
 
-		define_key_events
-    select_tag(extractor.recent_branch_names)
+    create_prompt
+    define_key_events
+    select_tag(extractor.recent_tag_names)
   end
 
   def define_key_events
@@ -24,6 +25,8 @@ class GitPrompt
       if event.value == 'q'
         exit
       end
+
+      # move up/down in the list
 
       if event.value == 'j'
         prompt.trigger(:keydown)
@@ -33,6 +36,7 @@ class GitPrompt
         prompt.trigger(:keyup)
       end
 
+      # Select a mode
 
       if event.value == 'b'
         clear_prompt
@@ -49,8 +53,11 @@ class GitPrompt
   private
 
   def clear_prompt
-    # 2 is for the prompt message
-    prompt.print TTY::Cursor.clear_lines(SELECT_OPTIONS_PER_PAGE + 2, :up)
+    prompt.clear_list
+  end
+
+  def create_prompt
+    @prompt = TTY::Prompt.new(quiet: true)
   end
 
   def select_tag(treeish_names)
@@ -69,13 +76,13 @@ class GitPrompt
       prompt.ok 'No tags were found'
     end
   rescue TTY::Reader::InputInterrupt => e
-    exit
+    # exit automatically
   end
 
   def checkout(tag_name)
     git.checkout(tag_name)
+    exit
   rescue Git::GitExecuteError => e
     prompt.error(e.message)
   end
 end
-

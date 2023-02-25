@@ -13,24 +13,30 @@ class TreeishExtractor
   def recent_tag_names
     # TODO unlimit number of tags when arg is given
     cmd = "git describe --tags $(git rev-list --tags --max-count=1000)"
-    get_treeish_names(cmd)
+    # reject commits without a tag
+    selecting_rule = ->(line, names) do
+      names << line.strip unless line =~ /-[\d]+-[a-z0-9]{8,}$/
+    end
+    get_treeish_names(cmd, selecting_rule)
   end
 
   def recent_branch_names
     # TODO limit number of branches when arg is not given
     cmd = 'git branch --sort=-committerdate'
-    get_treeish_names(cmd)
+    # a current branch is prefixed with '* ' to indicate it's selected
+    selecting_rule = ->(line, names) do
+      names << line.strip.sub('* ', '') unless line =~ /HEAD detached/
+    end
+    get_treeish_names(cmd, selecting_rule)
   end
 
   private
 
-  def get_treeish_names(cmd)
+  def get_treeish_names(cmd, selecting_rule)
     names = []
     _stdin, stdout, _stderr, _wait_thr = Open3.popen3(cmd)
     stdout.each(sep="\n") do |line|
-      # reject rev without a tag
-      # current branch has '* ' to indicate it's selected
-      names << line.strip.sub('* ', '') unless line =~ /-[\d]+-[a-z0-9]{8,}$/
+      selecting_rule.call(line, names)
     end
     names
   end
