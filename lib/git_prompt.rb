@@ -6,21 +6,62 @@ require 'logger'
 require_relative './tag_extractor'
 
 class GitPrompt
+  SELECT_OPTIONS_PER_PAGE = 10
+
   attr_reader :git, :extractor, :prompt, :logger
 
   def initialize(git: nil)
     @git = git || Git.open(Dir.pwd)
     @extractor = TagExtractor.new(git: git)
-    @prompt = TTY::Prompt.new
+		@prompt = TTY::Prompt.new(quiet: true)
 
-    define_key_events
+		define_key_events
+    select_tag
+  end
+
+  def define_key_events
+    prompt.on(:keypress) do |event|
+      if event.value == 'q'
+        exit
+      end
+
+      if event.value == 'j'
+        prompt.trigger(:keydown)
+      end
+
+      if event.value == 'k'
+        prompt.trigger(:keyup)
+      end
+
+
+      if event.value == 'b'
+        clear_prompt
+        select_tag
+      end
+
+      if event.value == 't'
+        clear_prompt
+        select_tag
+      end
+    end
+  end
+
+  private
+
+  def clear_prompt
+    # 2 is for the prompt message
+    prompt.print TTY::Cursor.clear_lines(SELECT_OPTIONS_PER_PAGE + 2, :up)
   end
 
   def select_tag
-    message = 'j/↓: down, k/↑: up, Enter: choose tag'
+    message = <<~MSG.chomp
+      j: down, k: up, q: quit, Enter: choose tag
+      [b] branch mode [t] tag mode
+    MSG
+
     recent_tag_names = extractor.recent_tag_names
     if recent_tag_names.size > 0
-      prompt.select(message, filter: false, per_page: 10) do |menu|
+      prompt.select(message, filter: false, per_page: SELECT_OPTIONS_PER_PAGE) do |menu|
         recent_tag_names.each do |tag_name|
           menu.choice tag_name, -> { checkout(tag_name) }
         end
@@ -31,24 +72,6 @@ class GitPrompt
   rescue TTY::Reader::InputInterrupt => e
     exit
   end
-
-  def define_key_events
-    prompt.on(:keypress) do |event|
-      if event.value == "j"
-        prompt.trigger(:keydown)
-      end
-
-      if event.value == "k"
-        prompt.trigger(:keyup)
-      end
-
-      if event.value == "q"
-        exit
-      end
-    end
-  end
-
-  private
 
   def checkout(tag_name)
     git.checkout(tag_name)

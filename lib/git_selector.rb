@@ -6,4 +6,4 @@ require_relative '../lib/git_prompt'
 # require 'bundler/setup'
 # Bundler.require(:default)
 
-GitPrompt.new.select_tag
+GitPrompt.new
