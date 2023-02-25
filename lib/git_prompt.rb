@@ -57,7 +57,7 @@ class GitPrompt
   end
 
   def create_prompt
-    @prompt = TTY::Prompt.new(quiet: true)
+    @prompt = TTY::Prompt.new(quiet: false)
   end
 
   def display_select(treeish_names)
