@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    git_selector (0.2.2)
+    git_selector (0.2.3)
       git
       tty-prompt
 
