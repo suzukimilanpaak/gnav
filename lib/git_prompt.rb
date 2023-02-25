@@ -3,7 +3,7 @@
 require 'git'
 require 'tty-prompt'
 require 'logger'
-require_relative './tag_extractor'
+require_relative './treeish_extractor'
 
 class GitPrompt
   SELECT_OPTIONS_PER_PAGE = 10
@@ -12,11 +12,11 @@ class GitPrompt
 
   def initialize(git: nil)
     @git = git || Git.open(Dir.pwd)
-    @extractor = TagExtractor.new(git: git)
+    @extractor = TreeishExtractor.new(git: git)
 		@prompt = TTY::Prompt.new(quiet: true)
 
 		define_key_events
-    select_tag
+    select_tag(extractor.recent_branch_names)
   end
 
   def define_key_events
@@ -36,12 +36,12 @@ class GitPrompt
 
       if event.value == 'b'
         clear_prompt
-        select_tag
+        select_tag(extractor.recent_branch_names)
       end
 
       if event.value == 't'
         clear_prompt
-        select_tag
+        select_tag(extractor.recent_tag_names)
       end
     end
   end
@@ -53,16 +53,15 @@ class GitPrompt
     prompt.print TTY::Cursor.clear_lines(SELECT_OPTIONS_PER_PAGE + 2, :up)
   end
 
-  def select_tag
+  def select_tag(treeish_names)
     message = <<~MSG.chomp
       j: down, k: up, q: quit, Enter: choose tag
       [b] branch mode [t] tag mode
     MSG
 
-    recent_tag_names = extractor.recent_tag_names
-    if recent_tag_names.size > 0
+    if treeish_names.size > 0
       prompt.select(message, filter: false, per_page: SELECT_OPTIONS_PER_PAGE) do |menu|
-        recent_tag_names.each do |tag_name|
+        treeish_names.each do |tag_name|
           menu.choice tag_name, -> { checkout(tag_name) }
         end
       end
