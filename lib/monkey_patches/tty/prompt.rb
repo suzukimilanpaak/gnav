@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require_relative '../../git_prompt.rb'
-require_relative './prompt/list.rb'
 
 module TTY
   class Prompt
 
+    # FIXME This introduces dependencies to tty-prompt v0.23.1
     # original - https://github.com/piotrmurach/tty-prompt/blob/master/lib/tty/prompt.rb#L226-L250
     def invoke_select(object, question, *args, &block)
       options = Utils.extract_options!(args)
@@ -33,10 +33,6 @@ module TTY
       unsubscribe_list
       # 2 is for the prompt message
       print(TTY::Cursor.clear_lines(GitPrompt::SELECT_OPTIONS_PER_PAGE + 2, :up))
-    end
-
-    def purge_list
-      @list = nil
     end
   end
 end

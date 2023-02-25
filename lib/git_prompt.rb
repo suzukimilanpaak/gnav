@@ -17,7 +17,7 @@ class GitPrompt
 
     create_prompt
     define_key_events
-    select_tag(extractor.recent_tag_names)
+    display_select(extractor.recent_branch_names)
   end
 
   def define_key_events
@@ -40,12 +40,12 @@ class GitPrompt
 
       if event.value == 'b'
         clear_prompt
-        select_tag(extractor.recent_branch_names)
+        display_select(extractor.recent_branch_names)
       end
 
       if event.value == 't'
         clear_prompt
-        select_tag(extractor.recent_tag_names)
+        display_select(extractor.recent_tag_names)
       end
     end
   end
@@ -60,7 +60,7 @@ class GitPrompt
     @prompt = TTY::Prompt.new(quiet: true)
   end
 
-  def select_tag(treeish_names)
+  def display_select(treeish_names)
     message = <<~MSG.chomp
       j: down, k: up, q: quit, Enter: choose tag
       [b] branch mode [t] tag mode
