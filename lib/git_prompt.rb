@@ -17,7 +17,7 @@ class GitPrompt
 
     create_prompt
     define_key_events
-    display_select(extractor.recent_branch_names)
+    display_select(:branch, extractor.recent_branch_names)
   end
 
   def define_key_events
@@ -40,12 +40,12 @@ class GitPrompt
 
       if event.value == 'b'
         clear_prompt
-        display_select(extractor.recent_branch_names)
+        display_select(:branch, extractor.recent_branch_names)
       end
 
       if event.value == 't'
         clear_prompt
-        display_select(extractor.recent_tag_names)
+        display_select(:tag, extractor.recent_tag_names)
       end
     end
   end
@@ -60,8 +60,9 @@ class GitPrompt
     @prompt = TTY::Prompt.new(quiet: false)
   end
 
-  def display_select(treeish_names)
-    message = <<~MSG.chomp
+  def display_select(treeish_type, treeish_names)
+    message = prompt.decorate("Select #{treeish_type.to_s.capitalize} > ", :green)
+    message += <<~MSG.chomp
       j: down, k: up, q: quit, Enter: choose tag
       [b] branch mode [t] tag mode
     MSG
