@@ -12,10 +12,11 @@ class TreeishExtractor
 
   def recent_tag_names
     # TODO unlimit number of tags when arg is given
-    cmd = "git describe --tags $(git rev-list --tags --max-count=1000)"
-    # reject commits without a tag
+    # cmd = "git describe --tags $(git rev-list --tags --max-count=1000)"
+    cmd = 'git tag --sort=-committerdate'
+    # reject commits without an annotated tag
     selecting_rule = ->(line, names) do
-      names << line.strip unless line =~ /-[\d]+-[a-z0-9]{8,}$/
+      names << line.strip
     end
     get_treeish_names(cmd, selecting_rule)
   end

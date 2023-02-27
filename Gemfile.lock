@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    git_selector (0.2.5)
+    git_selector (0.2.6)
       git
       tty-prompt
 
@@ -16,7 +16,7 @@ GEM
     coderay (1.1.3)
     debug_inspector (1.1.0)
     diff-lcs (1.5.0)
-    git (1.13.2)
+    git (1.14.0)
       addressable (~> 2.8)
       rchardet (~> 1.8)
     method_source (1.0.0)
