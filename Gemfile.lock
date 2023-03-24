@@ -3,7 +3,7 @@ PATH
   specs:
     git_selector (0.2.8)
       git
-      tty-prompt
+      tty-prompt (>= 0.22.0, < 0.24)
 
 GEM
   remote: https://rubygems.org/

@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'git'
-  spec.add_dependency 'tty-prompt'
+  # see monkey_patches/tty/prompt.rb for more details
+  spec.add_dependency 'tty-prompt', '>= 0.22.0', '< 0.24'
   spec.add_development_dependency 'rspec'
 end

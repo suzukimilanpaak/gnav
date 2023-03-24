@@ -63,8 +63,8 @@ class GitPrompt
   def display_select(treeish_type, treeish_names)
     message = prompt.decorate("Select #{treeish_type.to_s.capitalize} > ", :green)
     message += <<~MSG.chomp
+      [b] branch view [t] tag view
       j: down, k: up, q: quit, Enter: choose tag
-      [b] branch mode [t] tag mode
     MSG
 
     if treeish_names.size > 0
