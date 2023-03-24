@@ -20,6 +20,8 @@ class GitPrompt
     display_select(:branch, extractor.recent_branch_names)
   end
 
+  private
+
   def define_key_events
     prompt.on(:keypress) do |event|
       if event.value == 'q'
@@ -49,8 +51,6 @@ class GitPrompt
       end
     end
   end
-
-  private
 
   def clear_prompt
     prompt.clear_list
