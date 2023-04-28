@@ -8,4 +8,5 @@ group :development, :test do
   gem 'pry', require: true
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+  gem 'simplecov', require: false
 end

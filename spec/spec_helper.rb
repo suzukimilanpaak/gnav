@@ -1,3 +1,8 @@
+# frozen_string_literal
+
+require 'simplecov'
+SimpleCov.start
+
 require "bundler/setup"
 require "git_selector"
 
