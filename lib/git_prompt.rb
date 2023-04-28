@@ -41,19 +41,15 @@ class GitPrompt
       # Select a mode
 
       if event.value == 'b'
-        clear_prompt
+        prompt.clear!
         display_select(:branch, extractor.recent_branch_names)
       end
 
       if event.value == 't'
-        clear_prompt
+        prompt.clear!
         display_select(:tag, extractor.recent_tag_names)
       end
     end
-  end
-
-  def clear_prompt
-    prompt.clear_list
   end
 
   def create_prompt
