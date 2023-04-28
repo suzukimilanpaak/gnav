@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
+require 'bundler/setup'
 require_relative './git_selector/version'
 require_relative '../lib/git_prompt'
 
-# Settings to load bundled gems
-# require 'bundler/setup'
-# Bundler.require(:default)
+# Load bundled gems
+Bundler.require(:default)
 
-# :nocov:
 module GitSelector
   def self.run
     GitPrompt.new
   end
 end
-# :nocov:
