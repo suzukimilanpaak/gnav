@@ -7,7 +7,7 @@ require_relative '../lib/git_prompt'
 # Load bundled gems
 Bundler.require(:default)
 
-module GitSelector
+module GNav
   def self.run
     GitPrompt.new
   end

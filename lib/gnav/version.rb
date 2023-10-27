@@ -1,3 +1,3 @@
-module GitSelector
-  VERSION = "0.2.8"
+module GNav
+  VERSION = "0.3.0"
 end

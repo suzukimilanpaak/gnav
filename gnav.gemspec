@@ -2,7 +2,7 @@ require_relative 'lib/gnav/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "gnav"
-  spec.version       = GitSelector::VERSION
+  spec.version       = GNav::VERSION
   spec.authors       = ["Tatsuya Suzuki"]
   spec.email         = ["ttsysuzuki@googlemail.com"]
 
