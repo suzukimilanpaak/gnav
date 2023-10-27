@@ -1,21 +1,21 @@
-require_relative 'lib/git_selector/version'
+require_relative 'lib/gnav/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "git_selector"
+  spec.name          = "gnav"
   spec.version       = GitSelector::VERSION
   spec.authors       = ["Tatsuya Suzuki"]
   spec.email         = ["ttsysuzuki@googlemail.com"]
 
   spec.summary     = 'Interactive git tag and branch selector'
   spec.description = 'A CLI to let you interactive select tag and branch'
-  spec.homepage    = 'https://github.com/suzukimilanpaak/git_selector'
+  spec.homepage    = 'https://github.com/suzukimilanpaak/gnav'
 
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = 'https://github.com/suzukimilanpaak/git_selector'
+  spec.metadata["source_code_uri"] = 'https://github.com/suzukimilanpaak/gnav'
   spec.metadata["changelog_uri"] = 'https://github.com/suzukimilanpaak/blob/master/CHANGELOG.md'
 
   # Specify which files should be added to the gem when it is released.

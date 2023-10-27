@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    git_selector (0.2.8)
+    gnav (0.2.8)
       git
       tty-prompt (>= 0.22.0, < 0.24)
 
@@ -69,7 +69,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  git_selector!
+  gnav!
   pry
   pry-byebug
   pry-stack_explorer
