@@ -56,17 +56,17 @@ class GitPrompt
     @prompt = TTY::Prompt.new(quiet: false)
   end
 
-  def display_select(treeish_type, treeish_names)
+  def display_select(treeish_type, treeishes)
     message = prompt.decorate("Select #{treeish_type.to_s.capitalize} > ", :green)
     message += <<~MSG.chomp
       [b] branch view [t] tag view
       j: down, k: up, q: quit, Enter: choose tag
     MSG
 
-    if treeish_names.size > 0
+    if treeishes.size > 0
       prompt.select(message, filter: false, per_page: SELECT_OPTIONS_PER_PAGE) do |menu|
-        treeish_names.each do |tag_name|
-          menu.choice tag_name, -> { checkout(tag_name) }
+        treeishes.each do |treeish|
+          menu.choice(treeish[:name], -> { checkout(treeish[:value]) })
         end
       end
     else
@@ -76,8 +76,8 @@ class GitPrompt
     # exit automatically
   end
 
-  def checkout(tag_name)
-    git.checkout(tag_name)
+  def checkout(treeish_name)
+    git.checkout(treeish_name)
     exit
   rescue Git::GitExecuteError => e
     prompt.error(e.message)

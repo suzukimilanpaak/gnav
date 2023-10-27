@@ -2,7 +2,7 @@
 
 require_relative './spec_helper'
 
-describe GitSelector do
+describe GNav do
   describe '#run' do
     before { allow(GitPrompt).to receive(:new) }
 

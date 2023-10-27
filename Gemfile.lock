@@ -1,14 +1,14 @@
 PATH
   remote: .
   specs:
-    gnav (0.2.8)
+    gnav (0.3.0)
       git
       tty-prompt (>= 0.22.0, < 0.24)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.1)
+    addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
@@ -32,7 +32,7 @@ GEM
     pry-stack_explorer (0.6.1)
       binding_of_caller (~> 1.0)
       pry (~> 0.13)
-    public_suffix (5.0.1)
+    public_suffix (5.0.3)
     rchardet (1.8.0)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)

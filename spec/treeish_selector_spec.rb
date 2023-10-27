@@ -17,7 +17,13 @@ describe TreeishExtractor do
         ])
     end
 
-    it { expect(treeish.recent_tag_names).to eq(%w[v0.1.0 v0.1.1 v0.2.0]) }
+    it do
+      expect(treeish.recent_tag_names).to eq([
+        { name: 'v0.1.0', value: 'v0.1.0' },
+        { name: 'v0.1.1', value: 'v0.1.1' },
+        { name: 'v0.2.0', value: 'v0.2.0' }
+      ])
+    end
   end
 
   describe '#recent_branch_names' do
@@ -34,6 +40,12 @@ describe TreeishExtractor do
         ])
     end
 
-    it { expect(treeish.recent_branch_names).to eq(%w[master dev release]) }
+    it do
+      expect(treeish.recent_branch_names).to eq([
+        { name: '* master', value: 'master' },
+        { name: '  dev', value: 'dev' },
+        { name: '  release', value: 'release' }
+      ])
+    end
   end
 end

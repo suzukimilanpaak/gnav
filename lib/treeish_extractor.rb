@@ -12,25 +12,44 @@ class TreeishExtractor
 
   def recent_tag_names
     cmd = 'git tag --sort=-committerdate'
-    get_treeish_names(cmd) do |line, names|
-      names << line.strip
+    get_treeishes(cmd) do |line, names|
+      names << {
+        value: line.strip,
+        name: line.strip
+      }
     end
   end
 
   def recent_branch_names
     cmd = 'git branch --sort=-committerdate'
-    get_treeish_names(cmd) do |line, names|
-      # a branch name with 'HEAD detached' means the current commit being worked on is detached from its HEAD
-      unless line =~ /HEAD detached/
-        # a branch name with '* ' is the current working one
-        names << line.strip.sub('* ', '')
-      end
+    get_treeishes(cmd) do |line, names|
+      next if REJECT_STRATEGY.call(line, names).nil?
+      names << {
+        value: VALUE_STRATEGY.call(line, names),
+        name: NAME_STRATEGY.call(line, names)
+      }
     end
   end
 
   private
 
-  def get_treeish_names(cmd)
+  REJECT_STRATEGY = lambda do |line, _|
+    # 'HEAD detached' means the last commit is detached from its HEAD.
+    # We don't need this information and remove it.
+    line unless line =~ /HEAD detached/
+  end
+  VALUE_STRATEGY = lambda do |line, _|
+    line.sub('*', '').strip
+  end
+  NAME_STRATEGY = lambda do |line, _|
+    if line.match(/\*\s/)
+      line.strip
+    else
+      "  #{line.sub('*', '').strip}"
+    end
+  end
+
+  def get_treeishes(cmd)
     names = []
     _stdin, stdout, _stderr, _wait_thr = Open3.popen3(cmd)
     stdout.each(sep="\n") do |line|
