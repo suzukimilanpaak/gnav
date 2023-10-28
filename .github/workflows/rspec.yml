@@ -19,4 +19,4 @@ jobs:
       - name: Install dependent ruby gems
         run: bundle install
       - name: Run RSpec
-        run: bundle exec rake
+        run: bundle exec rspec
