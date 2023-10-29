@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   end
   spec.bindir        = 'bin/release'
   # spec.executables   = spec.files.grep(%r{^bin/release}) { |f| File.basename(f) }
-  spec.executables   = ['gits']
+  spec.executables   = ['gnav']
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'git'
