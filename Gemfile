@@ -9,4 +9,5 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
   gem 'simplecov', require: false
+  gem 'rake'
 end
