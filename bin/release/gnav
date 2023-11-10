@@ -1,5 +1,14 @@
 #!/usr/bin/env ruby -W0
 
+require 'cli'
+require "rubygems"
 require_relative '../../lib/gnav.rb'
+
+gemspec = Gem::Specification::load('gnav.gemspec')
+
+CLI.new do
+  description gemspec.description
+  version gemspec.version
+end.parse!
 
 GNav.run
