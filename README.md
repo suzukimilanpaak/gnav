@@ -1,6 +1,6 @@
 # GNav
 
-`gnav` is a simple command line tool to choose git tag and branch interactively.
+`gnav` is an simple command line tool for interactively checking out a git tag or branch.
 
 <img src='assets/gnav_theme.jpeg' width="260" alt='Gnav theme' />
 
