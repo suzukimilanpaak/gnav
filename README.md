@@ -10,7 +10,7 @@
 Simply, install it with gem.
 
 ```shell
-$ gem 'gnav'
+$ gem install gnav
 ```
 
 
