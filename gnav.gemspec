@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["ttsysuzuki@googlemail.com"]
 
   spec.summary     = 'Interactive git tag and branch selector'
-  spec.description = 'A CLI to let you interactive select tag and branch'
+  spec.description = '`gnav` is a simple command line tool to choose git tag and branch interactively.'
   spec.homepage    = 'https://github.com/suzukimilanpaak/gnav'
 
   spec.license       = "MIT"
@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'git'
+  spec.add_dependency 'cli'
   # see monkey_patches/tty/prompt.rb for more details
   spec.add_dependency 'tty-prompt', '>= 0.22.0', '< 0.24'
   spec.add_development_dependency 'rspec'
