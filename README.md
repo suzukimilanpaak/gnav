@@ -2,6 +2,8 @@
 
 `gnav` is a simple command line tool to choose git tag and branch interactively.
 
+<img src='assets/gnav_theme.jpeg' width="260" alt='Gnav theme' />
+
 
 ## Installation
 
