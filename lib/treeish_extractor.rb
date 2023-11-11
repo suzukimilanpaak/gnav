@@ -49,6 +49,8 @@ class TreeishExtractor
     end
   end
 
+  private_constant :REJECT_STRATEGY, :VALUE_STRATEGY, :NAME_STRATEGY
+
   def get_treeishes(cmd)
     names = []
     _stdin, stdout, _stderr, _wait_thr = Open3.popen3(cmd)
