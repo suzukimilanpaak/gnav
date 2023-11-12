@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe TreeishExtractor do
-  describe '#recent_tag_names' do
+describe Treeish::Tag do
+  describe '#recents' do
     subject(:treeish) { described_class.new }
 
     before do
@@ -18,15 +18,17 @@ describe TreeishExtractor do
     end
 
     it do
-      expect(treeish.recent_tag_names).to eq([
+      expect(treeish.recents).to eq([
         { name: 'v0.1.0', value: 'v0.1.0' },
         { name: 'v0.1.1', value: 'v0.1.1' },
         { name: 'v0.2.0', value: 'v0.2.0' }
       ])
     end
   end
+end
 
-  describe '#recent_branch_names' do
+describe Treeish::Branch do
+  describe '#recents' do
     subject(:treeish) { described_class.new }
 
     before do
@@ -41,7 +43,7 @@ describe TreeishExtractor do
     end
 
     it do
-      expect(treeish.recent_branch_names).to eq([
+      expect(treeish.recents).to eq([
         { name: '* master', value: 'master' },
         { name: '  dev', value: 'dev' },
         { name: '  release', value: 'release' }
