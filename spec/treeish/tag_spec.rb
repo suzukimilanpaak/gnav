@@ -15,13 +15,17 @@ describe Treeish::Tag do
           nil,
           nil
         ])
+
+      allow_any_instance_of(described_class)
+        .to receive(:current)
+        .and_return('v0.1.1')
     end
 
     it do
       expect(treeish.recents).to eq([
-        { name: 'v0.1.0', value: 'v0.1.0' },
-        { name: 'v0.1.1', value: 'v0.1.1' },
-        { name: 'v0.2.0', value: 'v0.2.0' }
+        { name: '  v0.1.0', value: 'v0.1.0' },
+        { name: '* v0.1.1', value: 'v0.1.1' },
+        { name: '  v0.2.0', value: 'v0.2.0' }
       ])
     end
   end

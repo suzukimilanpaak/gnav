@@ -3,8 +3,8 @@
 require 'git'
 require 'tty-prompt'
 require 'logger'
-require 'treeish'
-require 'monkey_patches/tty/prompt'
+require_relative './treeish'
+require_relative './monkey_patches/tty/prompt'
 
 class GitPrompt
   SELECT_OPTIONS_PER_PAGE = 10

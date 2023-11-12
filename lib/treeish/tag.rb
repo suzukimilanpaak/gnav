@@ -19,13 +19,22 @@ module Treeish
     end
 
     def name_strategy(line, _)
-      line.strip
+      if line.match(/#{current}/)
+        "* #{line.strip}"
+      else
+        "  #{line.strip}"
+      end
     end
 
     def current
       # git describe --exact-match --tags $(git log -n1 --pretty='%h')
-      last_commit = "git log -n1 --pretty='%h'"
-      git.describe(last_commit, { exact_match:nil, tags: nil })
+      cmd = "git log -n1 --pretty='%h'"
+      _stdin, stdout, _stderr, _wait_thr = Open3.popen3(cmd)
+      last_commit = stdout.read.strip
+
+      cmd = "git describe --exact-match --tags #{last_commit}"
+      _stdin, stdout, _stderr, _wait_thr = Open3.popen3(cmd)
+      stdout.read.strip
     end
   end
 end
