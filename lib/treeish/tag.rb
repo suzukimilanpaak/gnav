@@ -19,7 +19,7 @@ module Treeish
     end
 
     def name_strategy(line, _)
-      if line.match(/#{current}/)
+      if line.match(/^#{current}$/)
         "* #{line.strip}"
       else
         "  #{line.strip}"
@@ -34,7 +34,7 @@ module Treeish
 
       cmd = "git describe --exact-match --tags #{last_commit}"
       _stdin, stdout, _stderr, _wait_thr = Open3.popen3(cmd)
-      stdout.read.strip
+      stdout.read.strip || '[\s]+'
     end
   end
 end
