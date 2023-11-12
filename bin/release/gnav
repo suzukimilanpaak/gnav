@@ -4,7 +4,8 @@ require 'cli'
 require "rubygems"
 require_relative '../../lib/gnav.rb'
 
-gemspec = Gem::Specification::load('gnav.gemspec')
+file = File.expand_path('../../../', __FILE__)
+gemspec = Gem::Specification::load("#{file}/gnav.gemspec")
 
 CLI.new do
   description gemspec.description
