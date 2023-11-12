@@ -24,7 +24,7 @@ module Treeish
       if line.match(/\*\s/)
         line.strip
       else
-        "  #{line.sub('*', '').strip}"
+        "  #{line.strip}"
       end
     end
   end
