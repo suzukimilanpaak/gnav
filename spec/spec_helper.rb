@@ -5,6 +5,7 @@ SimpleCov.start
 
 require "bundler/setup"
 require "gnav"
+require "treeish"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
