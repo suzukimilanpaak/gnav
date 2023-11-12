@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gnav (0.5.0)
+    gnav (0.5.2)
       cli
       git
       tty-prompt (>= 0.22.0, < 0.24)
