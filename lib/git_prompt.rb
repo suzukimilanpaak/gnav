@@ -3,21 +3,22 @@
 require 'git'
 require 'tty-prompt'
 require 'logger'
-require_relative './treeish_extractor'
-require_relative './monkey_patches/tty/prompt.rb'
+require_relative './treeish'
+require_relative './monkey_patches/tty/prompt'
 
 class GitPrompt
   SELECT_OPTIONS_PER_PAGE = 10
 
-  attr_reader :git, :extractor, :prompt, :logger
+  attr_reader :git, :branch, :tag, :prompt, :logger
 
   def initialize(git: nil)
     @git = git || Git.open(Dir.pwd)
-    @extractor = TreeishExtractor.new(git: git)
+    @branch = Treeish::Branch.new(git: git)
+    @tag = Treeish::Tag.new(git: git)
 
     create_prompt
     define_key_events
-    display_select(:branch, extractor.recent_branch_names)
+    display_select(:branch, branch.recents)
   end
 
   private
@@ -42,12 +43,12 @@ class GitPrompt
 
       if event.value == 'b'
         prompt.clear!
-        display_select(:branch, extractor.recent_branch_names)
+        display_select(:branch, branch.recents)
       end
 
       if event.value == 't'
         prompt.clear!
-        display_select(:tag, extractor.recent_tag_names)
+        display_select(:tag, tag.recents)
       end
     end
   end
