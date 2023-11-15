@@ -34,6 +34,8 @@ $ gem install gnav
 $ gnav
 ```
 
+<img src='assets/demo.gif' width='600' alt='Demonstration' />
+
 
 ## Development
 
