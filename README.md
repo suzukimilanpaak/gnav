@@ -2,7 +2,7 @@
 
 # GNav
 
-`gnav` is an simple command line tool for interactively checking out a git tag or branch.
+`gnav` is a simple command line tool for interactively checking out a git tag or branch.
 
 <img src='assets/demo.gif' width='600' alt='Demonstration' />
 
