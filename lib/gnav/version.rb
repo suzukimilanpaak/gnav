@@ -2,6 +2,6 @@
 
 module GNav
   def self.version
-    '0.6.3'
+    '0.6.4'
   end
 end
