@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "rubygems"
 require 'cli'
 require_relative './gnav/version'
 require_relative '../lib/git_prompt'
@@ -16,3 +17,5 @@ module GNav
     GitPrompt.new
   end
 end
+
+GNav.run

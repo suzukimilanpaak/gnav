@@ -1,6 +1,1 @@
-#!/usr/bin/env ruby
-
-require "rubygems"
-require_relative '../../lib/gnav.rb'
-
-GNav.run
+#!/usr/bin/env -S RUBYOPT=-W0 ruby lib/gnav.rb
