@@ -26,6 +26,7 @@ class GitPrompt
   def define_key_events
     prompt.on(:keypress) do |event|
       if event.value == 'q'
+        p "\n"
         exit
       end
 
