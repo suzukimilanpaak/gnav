@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["ttsysuzuki@googlemail.com"]
 
   spec.summary     = 'Interactive git tag and branch selector'
-  spec.description = '`gnav` is an simple command line tool for interactively checking out a git tag or branch.'
+  spec.description = '`gnav` is a simple command line tool for interactively checking out a git tag or branch.'
   spec.homepage    = 'https://github.com/suzukimilanpaak/gnav'
 
   spec.license       = "MIT"
