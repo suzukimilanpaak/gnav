@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
 module GNav
-  VERSION = "0.6.1"
+  def self.version
+    '0.6.2'
+  end
 end
