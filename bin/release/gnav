@@ -1,1 +1,5 @@
-#!/usr/bin/env -S RUBYOPT=-W0 ruby lib/gnav.rb
+#!/usr/bin/env -S RUBYOPT=-W0 ruby
+
+require_relative '../../lib/gnav'
+
+GNav.run

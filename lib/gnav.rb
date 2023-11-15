@@ -18,5 +18,3 @@ module GNav
     GitPrompt.new
   end
 end
-
-GNav.run
