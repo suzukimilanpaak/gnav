@@ -1,15 +1,5 @@
-#!/usr/bin/env ruby -W0
+#!/usr/bin/env -S RUBYOPT=-W0 ruby
 
-require 'cli'
-require "rubygems"
-require_relative '../../lib/gnav.rb'
-
-file = File.expand_path('../../../', __FILE__)
-gemspec = Gem::Specification::load("#{file}/gnav.gemspec")
-
-CLI.new do
-  description gemspec.description
-  version gemspec.version
-end.parse!
+require_relative '../../lib/gnav'
 
 GNav.run

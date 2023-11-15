@@ -26,6 +26,7 @@ class GitPrompt
   def define_key_events
     prompt.on(:keypress) do |event|
       if event.value == 'q'
+        puts ''
         exit
       end
 
@@ -61,7 +62,7 @@ class GitPrompt
     message = prompt.decorate("Select #{treeish_type.to_s.capitalize} > ", :green)
     message += <<~MSG.chomp
       [b] branch view [t] tag view
-      j: down, k: up, q: quit, Enter: choose tag
+      j: down, k: up, q: quit, Enter: choose #{treeish_type}
     MSG
 
     if treeishes.size > 0
