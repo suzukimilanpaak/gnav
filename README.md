@@ -7,7 +7,21 @@
 
 ## Installation
 
-Simply, install it with gem.
+### Install Ruby
+
+#### Homebrew(Mac)
+```shell
+$ brew install ruby
+```
+
+
+### apt (Debian or Ubuntu)
+```shell
+$ sudo apt-get install ruby-full
+```
+
+
+## Install gnav
 
 ```shell
 $ gem install gnav
@@ -16,7 +30,10 @@ $ gem install gnav
 
 ## Usage
 
-TODO: Write usage instructions here
+```shell
+$ gnav
+```
+
 
 ## Development
 
