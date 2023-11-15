@@ -5,6 +5,7 @@ require 'cli'
 require_relative './gnav/version'
 require_relative '../lib/git_prompt'
 
+# CLI options
 file = File.expand_path('../../', __FILE__)
 gemspec = Gem::Specification::load("#{file}/gnav.gemspec")
 CLI.new do
